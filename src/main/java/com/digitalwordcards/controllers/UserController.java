@@ -56,7 +56,7 @@ public class UserController implements UserDetailsService {
                     throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Onbekende gebruikersrol");
                 }
             } catch (NullPointerException e) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Niet geauthenticeerd");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Deze user is niet geauthenticeerd");
             }
         });
         return user;

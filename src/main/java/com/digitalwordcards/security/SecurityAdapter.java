@@ -1,9 +1,14 @@
 package com.digitalwordcards.security;
 
+import java.util.HashSet;
+import java.util.List;
+
 import com.digitalwordcards.controllers.UserController;
 import com.digitalwordcards.data.Role;
 import com.digitalwordcards.data.User;
 import com.digitalwordcards.data.repositories.UserRepository;
+import com.digitalwordcards.data.requests.UserDto;
+import com.digitalwordcards.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,18 +21,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 
-import java.util.HashSet;
-import java.util.List;
-
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityAdapter extends WebSecurityConfigurerAdapter {
-    private final PasswordEncoder encoder;
-    private final UserController userService;
-    private final UserRepository repository;
+
+    private final UserService userService;
 
     @Bean
     public static PasswordEncoder getEncoder() {
@@ -55,17 +56,9 @@ public class SecurityAdapter extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider getProvider() {
         final DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(encoder);
+        provider.setPasswordEncoder(getEncoder());
         provider.setUserDetailsService(userService);
-        final User entity = new User();
-        entity.setRole(Role.ADMIN);
-        entity.setName("Admin");
-        entity.setClazz("none");
-        entity.setEmail("admin@gmail.com");
-        entity.setViewedCards(new HashSet<>());
-        entity.setPassword(encoder.encode("password"));
-        repository.saveAndFlush(entity);
+
         return provider;
     }
-
 }

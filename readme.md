@@ -56,21 +56,31 @@ Starter voor het testen van Spring Boot applicaties met bibliotheken van JUnit J
 
 Mockito mock objects bibliotheek core API en implementatie.
 
+### Testcontainers
+
+Testcontainers is een Java-bibliotheek die JUnit-tests ondersteunt, en biedt lichtgewicht, wegwerpbare exemplaren van algemene databases, Selenium-webbrowsers of iets anders dat in een Docker-container kan worden uitgevoerd.
+
+### Docker
+
+Docker biedt de mogelijkheid om een applicatie te verpakken en uit te voeren in een losjes geïsoleerde omgeving die een container wordt genoemd. Door de isolatie en beveiliging kunt u veel containers tegelijkertijd op een bepaalde host uitvoeren. Containers zijn lichtgewicht en bevatten alles wat nodig is om de toepassing uit te voeren, dus u hoeft niet te vertrouwen op wat momenteel op de host is geïnstalleerd.
+
+Voor het uitvoeren van de testen binnen dit project is Docker Desktop benodigd: [Download Docker Desktop](https://www.docker.com/products/docker-desktop)
+
 # Gebruikersrollen
 
 Deze backend maakt gebruik van drie user-rollen:
 
 **ADMIN**
 
-Beheerder met alle rechten, mag TEACHERS en STUDENT aanmaken als ook woordkaarten.
+Beheerder met alle rechten, mag USERS en Woordkaarten aanmaken.
 
 **TEACHER**
 
-Gebruikers met de rol TEACHER mag studenten aanmaken, woordkaarten wijzigen en studenten, klassen en modules bekijken.
+Gebruikers met de rol TEACHER mag studenten aanmaken, woordkaarten wijzigen en voortgang van studenten bekijken.
 
 **STUDENT**
 
-Gebruikers met de rol STUDENT mogen woordkaarten bekijken en hun eigen gegevens inzien.
+Gebruikers met de rol STUDENT mogen woordkaarten bekijken en hun eigen bekeken kaarten binnen een module.
 
 # Gebruikers
 
@@ -113,21 +123,23 @@ Module: 2
 Om de werking te testen dient er via de PUT api/cards/view endpoint kaarten bekeken te worden door studenten. Er kan via Postman een PUT verstuurd worden met als basic authenticatie die van een student. In de publieke Postman collectie heb ik al een set klaargezet om de applicatie te testen.
 
 Gebruik deze link om naar een publieke Postman omgeving te gaan met vooraf ingevulde requests:
-[https://www.postman.com/ttrinh85/workspace/public/collection/17433272-223b9c9b-b936-443c-a80f-a74d26a10a34](https://www.postman.com/ttrinh85/workspace/public/collection/17433272-223b9c9b-b936-443c-a80f-a74d26a10a34)
+[Link naar Postman Collectie](https://www.postman.com/ttrinh85/workspace/public/collection/17433272-223b9c9b-b936-443c-a80f-a74d26a10a34)
 
+Om de unit tests uit te voeren zal er gebruik gemaakt moeten worden van: [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
 # Endpoints
 
 
-* POST 	/api/users/create
-* POST 	/api/cards/create
-* PUT 		/api/cards/view
-* PUT 		/api/cards/modify
-* GET 		/api/users/
-* GET 		/api/cards/all
-* GET 		/api/cards/class/{CLAZZ}
+* POST 	    /api/users
+* POST 	    /api/cards
+* POST 		/api/cards/{cardId}
+* PUT 		/api/users/{email}/viewed/{cardId}
+* GET       /api/cards
+* GET 		/api/users
+* GET 		/api/cards/{cardId}
+* GET 		/api/class/{CLAZZ}
 * GET 		/api/cards/module/{MODULE}
-* GET 		/api/cards/viewed/{MODULE}
-* DELETE 	/api/cards/delete
-* DELETE 	/api/users
+* GET 		/api/users/{email}/module/{module}
+* DELETE 	/api/cards/{cardId}
+* DELETE 	/api/users/{email}
 

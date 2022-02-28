@@ -20,6 +20,8 @@ Bij de application.properties pas je wanneer nodig de volgende gegevens aan naar
 spring.datasource.username=postgres
 spring.datasource.password=postgres`
 
+Voor het testen maken we gebruik van testcontainers en Docker, download de laatste versie van [Download Docker Desktop](https://www.docker.com/products/docker-desktop).
+
 Vervolgens gebruik je de mogelijkheden van je IDE om de applicatie uit te voeren of je gebruikt een terminal. Zorg dat je in de terminal in de map zit van het project en gebruik het volgende command:
 
 `./mvnw spring-boot:run`

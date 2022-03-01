@@ -3,7 +3,6 @@ package com.digitalwordcards.data;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

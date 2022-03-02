@@ -1,5 +1,4 @@
 package com.digitalwordcards.data;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
@@ -11,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import com.digitalwordcards.data.requests.UserDto;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,5 +1,4 @@
 package com.digitalwordcards.services;
-
 import com.digitalwordcards.data.Card;
 import com.digitalwordcards.data.repositories.CardRepository;
 import com.digitalwordcards.data.repositories.UserRepository;
@@ -8,7 +7,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -35,7 +33,7 @@ public class CardService {
         final var optionalCard = cardRepository.findById(cardId);
 
         if (optionalCard.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "card does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Card does not exist");
         }
 
         userRepository.findAllByViewedCardsIsContaining(optionalCard.get()).forEach(user -> {
@@ -69,7 +67,7 @@ public class CardService {
         final var optionalCard = cardRepository.findById(cardId);
 
         if (optionalCard.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "card does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Card does not exist");
         }
 
         return optionalCard.get();
@@ -100,7 +98,7 @@ public class CardService {
         final var optionalCard = cardRepository.findById(cardId);
 
         if (optionalCard.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "card does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Card does not exist");
         }
 
         final var card = optionalCard.get();

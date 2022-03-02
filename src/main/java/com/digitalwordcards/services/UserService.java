@@ -1,5 +1,4 @@
 package com.digitalwordcards.services;
-
 import com.digitalwordcards.data.Card;
 import com.digitalwordcards.data.Role;
 import com.digitalwordcards.data.User;
@@ -15,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -36,7 +34,7 @@ public class UserService implements UserDetailsService {
         final var optionalUser = userRepository.findById(userDto.getEmail());
 
         if (optionalUser.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gebruiker bestaat al");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist");
         }
 
         final var user = User.fromDto(userDto);
@@ -50,7 +48,7 @@ public class UserService implements UserDetailsService {
         final var optionalUser = userRepository.findById(email);
 
         if (optionalUser.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User does not exist");
         }
 
         userRepository.delete(optionalUser.get());
@@ -67,14 +65,13 @@ public class UserService implements UserDetailsService {
         final var optionalUser = userRepository.findById(email);
 
         if (optionalUser.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User does not exist");
         }
 
         final var user = optionalUser.get();
         final var card = cardService.getEntity(cardId);
 
         user.getViewedCards().add(card);
-       // card.getViewedBy().add(user);
 
         userRepository.save(user);
         cardService.save(card);
@@ -104,7 +101,7 @@ public class UserService implements UserDetailsService {
         final var optionalUser = userRepository.findById(email);
 
         if (optionalUser.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User does not exist");
         }
 
         return optionalUser.get().getViewedCards().stream().filter(card->card.getModule() == module).

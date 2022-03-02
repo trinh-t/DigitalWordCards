@@ -1,5 +1,4 @@
 package com.digitalwordcards.data.requests;
-
 import com.digitalwordcards.data.Role;
 import lombok.Data;
 

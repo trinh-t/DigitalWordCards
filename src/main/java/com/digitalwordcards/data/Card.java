@@ -1,20 +1,15 @@
 package com.digitalwordcards.data;
-
 import com.digitalwordcards.data.requests.CardDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.util.Base64;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -33,8 +28,6 @@ public class Card {
     private int module;
     private LocalDate displayDate;
 
-/*    @ManyToMany(cascade = CascadeType.REMOVE)
-    private Set<User> viewedBy;*/
 
     @Transient
     public static Card fromDto(CardDto cardDto)  {

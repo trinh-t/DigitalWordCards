@@ -1,13 +1,5 @@
 package com.digitalwordcards.security;
-
-import java.util.HashSet;
 import java.util.List;
-
-import com.digitalwordcards.controllers.UserController;
-import com.digitalwordcards.data.Role;
-import com.digitalwordcards.data.User;
-import com.digitalwordcards.data.repositories.UserRepository;
-import com.digitalwordcards.data.requests.UserDto;
 import com.digitalwordcards.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

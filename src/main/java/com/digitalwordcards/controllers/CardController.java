@@ -50,7 +50,7 @@ public class CardController {
     }
 
     @GetMapping("/{cardId}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'TEACHER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TEACHER', 'STUDENT')")
     public CardDto getCard(@PathVariable UUID cardId) { return cardService.get(cardId); }
 
     @GetMapping("/module/{module}")

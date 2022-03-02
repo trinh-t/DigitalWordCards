@@ -1,6 +1,4 @@
 package com.digitalwordcards.data;
-
-
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Role implements GrantedAuthority {

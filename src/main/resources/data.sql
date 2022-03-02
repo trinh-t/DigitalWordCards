@@ -1,5 +1,6 @@
 insert into application_user (email, name, role, clazz, password)
 values
+('admin@gmail.com', 'Admin', 'ADMIN', 'none', '$2a$10$WTd00GXfKAOH7qO0U8R31eZrDd9dEW5Q01wxTO23lG3c5OUbQwYr2'), -- password = password
 ('teacher@gmail.com', 'Teacher', 'TEACHER', 'none', '$2a$10$WTd00GXfKAOH7qO0U8R31eZrDd9dEW5Q01wxTO23lG3c5OUbQwYr2'), -- password = password
 ('student@gmail.com', 'Student', 'STUDENT', '1A', '$2a$10$WTd00GXfKAOH7qO0U8R31eZrDd9dEW5Q01wxTO23lG3c5OUbQwYr2'), -- password = password
 ('student2@gmail.com', 'Student', 'STUDENT', '2A', '$2a$10$WTd00GXfKAOH7qO0U8R31eZrDd9dEW5Q01wxTO23lG3c5OUbQwYr2'); -- password = password

@@ -1,5 +1,4 @@
 package com.digitalwordcards;
-
 import com.digitalwordcards.data.Card;
 import com.digitalwordcards.data.User;
 import com.digitalwordcards.data.repositories.CardRepository;
@@ -21,14 +20,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import javax.sql.DataSource;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-
 import static com.digitalwordcards.data.Role.STUDENT;
 import static com.digitalwordcards.data.Role.TEACHER;
 import static org.hamcrest.Matchers.hasSize;
@@ -223,7 +220,7 @@ class DigitalWordCardsApplicationTests {
 
     @Test
     @DisplayName("Test creating a card")
-    @WithMockUser(username = "teacher@gmail.com", authorities = "TEACHER")
+    @WithMockUser(username = "admin@gmail.com", authorities = "ADMIN")
     void testCreateCard() throws Exception {
 
         final var testFile = Paths.get("src/test/resources/card.jpeg");
@@ -246,7 +243,7 @@ class DigitalWordCardsApplicationTests {
 
     @Test
     @DisplayName("Test deleting a card that doesn't exists")
-    @WithMockUser(username = "teacher@gmail.com", authorities = "TEACHER")
+    @WithMockUser(username = "admin@gmail.com", authorities = "ADMIN")
     void testDeleteCardThatDoesNotExists() throws Exception {
 
         mockMvc.perform(
@@ -259,7 +256,7 @@ class DigitalWordCardsApplicationTests {
 
     @Test
     @DisplayName("Test deleting a card that already exists")
-    @WithMockUser(username = "teacher@gmail.com", authorities = "TEACHER")
+    @WithMockUser(username = "admin@gmail.com", authorities = "ADMIN")
     void testDeletingACardThatAlreadyExists() throws Exception {
 
         final var testFile = Paths.get("src/test/resources/card.jpeg");
@@ -284,7 +281,7 @@ class DigitalWordCardsApplicationTests {
 
     @Test
     @DisplayName("Test fetching all cards when there are no cards")
-    @WithMockUser(username = "student@gmail.com", authorities = "STUDENT")
+    @WithMockUser(username = "teacher@gmail.com", authorities = "TEACHER")
     void testFetchNoCards() throws Exception {
 
 
@@ -298,7 +295,7 @@ class DigitalWordCardsApplicationTests {
 
     @Test
     @DisplayName("Test fetching all cards when there are cards")
-    @WithMockUser(username = "student@gmail.com", authorities = "STUDENT")
+    @WithMockUser(username = "admin@gmail.com", authorities = "ADMIN")
     void testFetchCards() throws Exception {
 
         final var testFile = Paths.get("src/test/resources/card.jpeg");
@@ -330,7 +327,7 @@ class DigitalWordCardsApplicationTests {
 
     @Test
     @DisplayName("Test getting a single card")
-    @WithMockUser(username = "student@gmail.com", authorities = "STUDENT")
+    @WithMockUser(username = "admin@gmail.com", authorities = "ADMIN")
     void testGettingACardThatAlreadyExists() throws Exception {
 
         final var testFile = Paths.get("src/test/resources/card.jpeg");
@@ -355,7 +352,7 @@ class DigitalWordCardsApplicationTests {
 
     @Test
     @DisplayName("Test fetching all cards for a module")
-    @WithMockUser(username = "student@gmail.com", authorities = "STUDENT")
+    @WithMockUser(username = "teacher@gmail.com", authorities = "TEACHER")
     void testFetchCardsForModule() throws Exception {
 
         final var testFile = Paths.get("src/test/resources/card.jpeg");
@@ -558,7 +555,7 @@ class DigitalWordCardsApplicationTests {
         final var user = new User();
 
         user.setClazz("Valid class");
-        // Note this email address is different from the logged in user.
+        // Note: this email address is different from the logged in user.
         user.setEmail("student2@gmail.com");
         user.setPassword("Valid password");
         user.setName("Valid name");

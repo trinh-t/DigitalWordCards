@@ -1,13 +1,10 @@
 package com.digitalwordcards.controllers;
-
 import java.util.List;
 import java.util.UUID;
-
 import com.digitalwordcards.data.requests.CardDto;
 import com.digitalwordcards.data.requests.UserDto;
 import com.digitalwordcards.services.UserService;
 import lombok.AllArgsConstructor;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +23,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TEACHER')")
     public UserDto createUser(@RequestBody UserDto userDto) {
         return userService.create(userDto);
     }

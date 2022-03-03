@@ -34,7 +34,7 @@ public class UserService implements UserDetailsService {
         final var optionalUser = userRepository.findById(userDto.getEmail());
 
         if (optionalUser.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exist");
         }
 
         final var user = User.fromDto(userDto);
